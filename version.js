@@ -9,18 +9,18 @@ const Server  = require('../lib')
 const lab = exports.lab = Lab.script()
 
 lab.experiment('/version', () => {
-
-   lab.test('should return package version', done => {
-
-      Server.init(2002, (err, server) => {
+ 
+    lab.test('should return version', done => {
+ 
+      Server.init(3030, (err, server) => {
 
          Code.expect(err).to.not.exist()
          server.inject('/version', res => {
 
-            Code.expect(res.statusCode).to.equal(200);
+            Code.expect(res.statusCode).to.equal(200)
             Code.expect(res.result).to.deep.equal({version: Package.version})
             server.stop(done);
          })
       })
-   })
+    })
 })

@@ -4,8 +4,8 @@
   "description": "This is a community learning experiment. The idea is simple - use GitHub as a platform for teaching people coding skills as a group, where everyone is both a student and a teacher. The goal is to learn how to operate such a distributed classroom and then apply that pattern to other topics by other people.",
   "main": "lib/index.js",
   "scripts": {
-    "start": "node lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "test": "lab -t 100 -r console"
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
   "author": "George <7jagjag@gmail.com>",
   "license": "",
   "dependencies": {
-    "hapi": "^11.1.1"
+    "hapi": "^11.1.1",
+    "monkeypatch": "^1.0.0"
   }
 }
