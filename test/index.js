@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Dependencies
  */
@@ -26,7 +25,9 @@ lab.experiment('Server', () => {
    })
 
    lab.test('should start on port 4000', done => {
+
       Server.init(4000, (err, server) => {
+
          Code.expect(err).to.not.exist()
          Code.expect(server.info.port).to.equal(4000)
          server.stop(done)
@@ -35,16 +36,18 @@ lab.experiment('Server', () => {
 
    lab.test('should throw err when register a plugin', done => {
       
-      MonkeyPatch(Version, 'register', (err, options, next) => {
-         return new Error('err')
-      })
+      var original = Version.register;
+       Version.register = function (server, options, next) {
+           Version.register = original;
+           return next(new Error('fallo'));
+       };
 
       Version.register.attributes = {name: 'fake'}
-
+      
       Server.init(2001, (err, server) => {
 
          Code.expect(err).to.exist()
-         // Version.register.unpatch();
+         Code.expect(err.message).to.equal('fallo')
          server.stop(done)
       })
    })
