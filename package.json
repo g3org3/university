@@ -2,9 +2,9 @@
   "name": "university",
   "version": "0.0.1",
   "description": "This is a community learning experiment. The idea is simple - use GitHub as a platform for teaching people coding skills as a group, where everyone is both a student and a teacher. The goal is to learn how to operate such a distributed classroom and then apply that pattern to other topics by other people.",
-  "main": "lib/index.js",
+  "main": "lib/start.js",
   "scripts": {
-    "start": "node index",
+    "start": "node lib/start.js",
     "test": "lab -t 100 -r console"
   },
   "repository": {
