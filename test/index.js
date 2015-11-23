@@ -49,7 +49,7 @@ lab.experiment('Server', () => {
 
          Code.expect(err).to.exist()
          Code.expect(err.message).to.equal('fallo')
-         server.stop(done)
+         done();
       })
    })
 
@@ -67,7 +67,7 @@ lab.experiment('Server', () => {
 
          Code.expect(err).to.exist()
          Code.expect(err.message).to.equal('fallo')
-         server.stop(done)
+         done();
       })
    })
 })

@@ -14,6 +14,7 @@
   "author": "George <7jagjag@gmail.com>",
   "license": "",
   "dependencies": {
+    "glue": "^2.4.0",
     "hapi": "^11.1.2",
     "hapi-auth-basic": "^4.1.0",
     "monkeypatch": "^1.0.0"
