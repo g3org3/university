@@ -6,8 +6,9 @@ const MonkeyPatch = require('monkeypatch')
 const Code    = require('code')
 const Hapi    = require('hapi')
 const Lab     = require('lab')
-const Version = require('../lib/version')
 const Server  = require('../lib')
+const Version = require('../lib/version')
+const Private = require('../lib/private')
 
 
 const lab = exports.lab = Lab.script()
@@ -34,7 +35,7 @@ lab.experiment('Server', () => {
       })
    })
 
-   lab.test('should throw err when register a plugin', done => {
+   lab.test('should throw err when register version plugin', done => {
       
       var original = Version.register;
        Version.register = function (server, options, next) {
@@ -45,6 +46,24 @@ lab.experiment('Server', () => {
       Version.register.attributes = {name: 'fake'}
       
       Server.init(2001, (err, server) => {
+
+         Code.expect(err).to.exist()
+         Code.expect(err.message).to.equal('fallo')
+         server.stop(done)
+      })
+   })
+
+   lab.test('should throw err when register private plugin', done => {
+      
+      var original = Private.register;
+       Private.register = function (server, options, next) {
+           Private.register = original;
+           return next(new Error('fallo'));
+       };
+
+      Private.register.attributes = {name: 'fake'}
+      
+      Server.init(2002, (err, server) => {
 
          Code.expect(err).to.exist()
          Code.expect(err.message).to.equal('fallo')
