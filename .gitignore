@@ -15,3 +15,5 @@ config.json
 coverage.*
 .settings
 *.html
+*/*/*.crt
+*/*/*.key
