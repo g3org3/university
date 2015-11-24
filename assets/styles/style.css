@@ -1,0 +1,39 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	color: #444;
+	background-color: #f8f8f8;
+	font-family: lucida grande;
+}
+
+h1 {
+	font-weight: 200;
+}
+
+input[type="text"], input[type="password"] {
+	padding: 10px 5px;
+	font-size: 18px;
+	border: 1px solid #ccc;
+	outline: none;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+	border-color: cornflowerblue;
+}
+
+button {
+	background: #eee;
+	font-size: 18px;
+	border: 1px solid #ccc;
+	padding: 10px 5px;
+	outline: none;
+}
+button:focus {
+	background-color: #777;
+}
+
+a {
+	color: cornflowerblue;
+	text-decoration: none;
+}
