@@ -9,6 +9,7 @@ const Package = require('../package.json')
 const Server  = require('../lib')
 const Path    = require('path')
 const Vision  = require('vision')
+const Inert   = require('inert')
 
 const lab = exports.lab = Lab.script()
 
@@ -49,9 +50,47 @@ describe('/home', () => {
       
       Server.init(2001, (err, server) => {
 
-         Code.expect(err).to.exist()
-         Code.expect(err.message).to.equal('fallo')
+         expect(err).to.exist()
+         expect(err.message).to.equal('fallo')
          done();
       })
    })
+
+   it('should handle inert plugin err', done => {
+
+      var original = Inert.register;
+       Inert.register = function (server, options, next) {
+           Inert.register = original;
+           return next(new Error('fallo'));
+       };
+
+      Inert.register.attributes = {name: 'fake'}
+      
+      Server.init(2001, (err, server) => {
+
+         expect(err).to.exist()
+         expect(err.message).to.equal('fallo')
+         done();
+      })
+   })
+
+   it('should return login page', done => {
+      
+      Server.init(2007, (err, server) => {
+
+         expect(err).to.not.exist()
+         server.inject('/login', res => {
+
+            expect(res.statusCode).to.equal(200);
+            server.stop(done) 
+         })
+      })
+   })
 })
+
+
+
+
+
+
+
